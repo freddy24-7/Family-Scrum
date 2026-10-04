@@ -9,7 +9,7 @@ import { nl } from '../i18n/nl'
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger'
 const variants: Record<Variant, string> = {
-  primary: 'bg-accent text-accent-ink hover:opacity-90',
+  primary: 'bg-brand text-accent-ink glow hover:brightness-110',
   secondary: 'bg-surface-2 text-ink hover:bg-line',
   ghost: 'text-ink-2 hover:bg-surface-2',
   danger: 'text-danger hover:bg-surface-2',
@@ -47,26 +47,34 @@ export function Field({
 }
 
 const inputClass =
-  'w-full rounded-xl border border-line bg-surface px-3 py-2.5 text-ink outline-none focus:border-accent focus:ring-2 focus:ring-accent/20'
+  'w-full rounded-xl border border-line bg-surface px-3 py-2.5 text-ink outline-none placeholder:text-ink-3 focus:border-accent focus:ring-2 focus:ring-accent/25'
 
-export function Input(props: InputHTMLAttributes<HTMLInputElement>) {
-  return <input className={inputClass} {...props} />
+// An extra className is added to the base style (it used to replace it).
+export function Input({ className = '', ...props }: InputHTMLAttributes<HTMLInputElement>) {
+  return <input className={`${inputClass} ${className}`} {...props} />
 }
 
-export function TextArea(props: TextareaHTMLAttributes<HTMLTextAreaElement>) {
-  return <textarea className={`${inputClass} min-h-24 resize-y`} {...props} />
+export function TextArea({
+  className = '',
+  ...props
+}: TextareaHTMLAttributes<HTMLTextAreaElement>) {
+  return <textarea className={`${inputClass} min-h-24 resize-y ${className}`} {...props} />
 }
 
 export function Card({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`rounded-2xl border border-line bg-surface p-4 ${className}`}>{children}</div>
+    <div
+      className={`rounded-2xl border border-line bg-surface/90 p-4 shadow-lg shadow-black/20 transition hover:border-accent/30 ${className}`}
+    >
+      {children}
+    </div>
   )
 }
 
 export function PageTitle({ children, action }: { children: ReactNode; action?: ReactNode }) {
   return (
     <div className="mb-4 flex items-center justify-between gap-3">
-      <h1 className="text-2xl font-semibold tracking-tight">{children}</h1>
+      <h1 className="text-brand text-3xl font-bold tracking-tight">{children}</h1>
       {action}
     </div>
   )
@@ -122,7 +130,7 @@ export function Segmented<T extends string>({
           title={o.hint}
           className={`min-h-10 rounded-full border px-3.5 text-sm transition ${
             value === o.value
-              ? 'border-accent bg-accent text-accent-ink'
+              ? 'border-transparent bg-brand text-accent-ink glow'
               : 'border-line bg-surface text-ink-2 hover:bg-surface-2'
           }`}
         >

@@ -1,55 +1,33 @@
 @import 'tailwindcss';
 
-/* Design tokens. Category colours follow the validated categorical palette order
-   (blue, orange, aqua, yellow, magenta, green, violet): the same colour means the same
-   category everywhere, including the later model dashboard. */
+/* Design tokens: one dark theme (black with a pink -> purple brand gradient).
+   Category colours follow the validated categorical palette order (blue, orange, aqua,
+   yellow, magenta, green, violet), in the steps validated for a dark surface: the same
+   colour means the same category everywhere, including the model dashboard. */
 :root {
-  --page: #f9f9f7;
-  --surface: #ffffff;
-  --surface-2: #f0efec;
-  --border: #e4e2dc;
-  --ink: #0b0b0b;
-  --ink-2: #52514e;
-  --ink-3: #898781;
-  --accent: #2a78d6;
+  --page: #0e1217;
+  --surface: #1c1f26;
+  --surface-2: #272b35;
+  --border: #2f3440;
+  --ink: #ffffff;
+  --ink-2: #c5cad3;
+  --ink-3: #8a919e;
+  --accent: #ff4fa3;
+  --accent-2: #a855f7;
   --accent-ink: #ffffff;
-  --warn: #b25e00;
-  --warn-bg: #fff4e0;
-  --danger: #d03b3b;
-  --good: #0c7a0c;
-  --cat-chores: #2a78d6;
-  --cat-groceries: #eb6834;
-  --cat-kids: #1baf7a;
+  --brand-gradient: linear-gradient(135deg, #ff4fa3 0%, #c03df0 55%, #8b5cf6 100%);
+  --warn: #fbbf24;
+  --warn-bg: #2a2110;
+  --danger: #ff6b81;
+  --good: #34d399;
+  --cat-chores: #3987e5;
+  --cat-groceries: #d95926;
+  --cat-kids: #199e70;
   --cat-home_maintenance: #c98500;
-  --cat-finance: #e87ba4;
-  --cat-social: #008300;
-  --cat-other: #4a3aa7;
-  color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --page: #0d0d0d;
-    --surface: #1a1a19;
-    --surface-2: #262624;
-    --border: #383835;
-    --ink: #ffffff;
-    --ink-2: #c3c2b7;
-    --ink-3: #898781;
-    --accent: #3987e5;
-    --warn: #fab219;
-    --warn-bg: #2e2412;
-    --danger: #e66767;
-    --good: #3fb83f;
-    --cat-chores: #3987e5;
-    --cat-groceries: #d95926;
-    --cat-kids: #199e70;
-    --cat-home_maintenance: #c98500;
-    --cat-finance: #d55181;
-    --cat-social: #2f9e2f;
-    --cat-other: #9085e9;
-    color-scheme: dark;
-  }
+  --cat-finance: #d55181;
+  --cat-social: #2f9e2f;
+  --cat-other: #9085e9;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -62,6 +40,7 @@
   --color-ink-3: var(--ink-3);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
+  --color-accent-2: var(--accent-2);
   --color-warn: var(--warn);
   --color-warn-bg: var(--warn-bg);
   --color-danger: var(--danger);
@@ -70,7 +49,11 @@
 
 html,
 body {
-  background: var(--page);
+  background:
+    radial-gradient(60rem 30rem at 15% -10%, rgb(255 79 163 / 0.16), transparent 60%),
+    radial-gradient(50rem 28rem at 95% -5%, rgb(139 92 246 / 0.18), transparent 60%),
+    var(--page);
+  background-attachment: fixed;
   color: var(--ink);
   font-family:
     system-ui,
@@ -90,4 +73,20 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+/* Brand gradient: buttons, the active menu item, the logo and page titles. */
+@utility bg-brand {
+  background-image: var(--brand-gradient);
+}
+
+@utility text-brand {
+  background-image: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility glow {
+  box-shadow: 0 8px 28px -10px rgb(255 79 163 / 0.55);
 }

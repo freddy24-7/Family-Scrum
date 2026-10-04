@@ -47,11 +47,11 @@ export function Layout() {
   const nav = user?.is_superuser ? [...items, adminItem] : items
   return (
     <div className="min-h-dvh pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
-      <header className="sticky top-0 z-10 border-b border-line bg-page/90 backdrop-blur">
+      <header className="sticky top-0 z-10 border-b border-line bg-page/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-4xl items-center gap-3 px-4 py-3">
           <img src="/favicon.svg" alt="" className="size-7" />
           <div className="min-w-0 flex-1">
-            <div className="truncate font-semibold leading-tight">{nl.appName}</div>
+            <div className="text-brand truncate font-bold leading-tight">{nl.appName}</div>
             <div className="truncate text-xs text-ink-3">{household.name}</div>
           </div>
           <nav className="hidden gap-1 md:flex">
@@ -60,7 +60,7 @@ export function Layout() {
                 key={i.to}
                 to={i.to}
                 className={({ isActive }) =>
-                  `rounded-lg px-3 py-2 text-sm ${isActive ? 'bg-surface-2 font-medium text-ink' : 'text-ink-2 hover:bg-surface-2'}`
+                  `rounded-full px-3.5 py-2 text-sm transition ${isActive ? 'bg-brand glow font-medium text-white' : 'text-ink-2 hover:bg-surface-2 hover:text-ink'}`
                 }
               >
                 {i.label}
@@ -78,7 +78,7 @@ export function Layout() {
       <main className="mx-auto max-w-4xl px-4 py-5">
         <Outlet />
       </main>
-      <nav className="fixed inset-x-0 bottom-0 z-10 border-t border-line bg-surface pb-[env(safe-area-inset-bottom)] md:hidden">
+      <nav className="fixed inset-x-0 bottom-0 z-10 border-t border-line bg-page/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl md:hidden">
         <div className={`grid ${nav.length > 6 ? 'grid-cols-7' : 'grid-cols-6'}`}>
           {nav.map((i) => (
             <NavLink

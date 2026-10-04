@@ -11,7 +11,7 @@ export function AuthShell({ title, children }: { title: string; children: ReactN
       <div className="mb-6 flex items-center gap-3">
         <img src="/favicon.svg" alt="" className="size-10" />
         <div>
-          <div className="text-xl font-semibold">{nl.appName}</div>
+          <div className="text-brand text-2xl font-bold">{nl.appName}</div>
           <div className="text-sm text-ink-3">{nl.tagline}</div>
         </div>
       </div>
