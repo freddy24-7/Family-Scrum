@@ -1,4 +1,4 @@
-# Family Kanban (Gezinsbord)
+# Family Scrum (Gezinsbord)
 
 A household task board for families, run as weekly **Scrum sprints**, with a
 **machine-learning model that is trained, versioned, monitored for drift and retrained**.
